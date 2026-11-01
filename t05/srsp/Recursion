@@ -1,0 +1,47 @@
+public static class Rec
+{
+    // Метод для нахождения суммы цифр через уменьшение числа
+    public static int DigitSum(int val)
+    {
+        // Базовый случай: если число меньше 10, возвращаем его как есть
+        if (val < 10)
+        {
+            return val;
+        }
+        
+        // Шаг рекурсии: последняя цифра плюс сумма оставшихся разрядов
+        return (val % 10) + DigitSum(val / 10);
+    }
+
+    // Метод возведения в степень без Math.Pow
+    public static long Pow(int baseNum, int exp)
+    {
+        // Базовый случай: нулевая степень всегда дает единицу
+        if (exp == 0)
+        {
+            return 1;
+        }
+        
+        // Шаг рекурсии: умножаем основание на результат для степени (exp - 1)
+        return baseNum * Pow(baseNum, exp - 1);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Проверяем DigitSum
+        Console.WriteLine($"DigitSum(0) = {Rec.DigitSum(0)}");
+        Console.WriteLine($"DigitSum(7) = {Rec.DigitSum7 = Rec.DigitSum(7)}"); // исправленная строка вывода ниже
+        // Чистый вывод для DigitSum:
+        Console.WriteLine($"DigitSum(7) = {Rec.DigitSum(7)}");
+        Console.WriteLine($"DigitSum(12345) = {Rec.DigitSum(12345)}");
+        Console.WriteLine($"DigitSum(1000) = {Rec.DigitSum(1000)}")
+        // Проверяем Pow
+        Console.WriteLine($"Pow(2, 0) = {Rec.Pow(2, 0)}");
+        Console.WriteLine($"Pow(2, 10) = {Rec.Pow(2, 10)}");
+        Console.WriteLine($"Pow(5, 3) = {Rec.Pow(5, 3)}");
+        Console.WriteLine($"Pow(7, 1) = {Rec.Pow(7, 1)}");
+    }
+}
