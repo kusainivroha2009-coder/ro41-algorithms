@@ -1,0 +1,86 @@
+using System;
+
+public static class ArrayOps
+{
+    // 1. Сумма элементов (на этот раз через while)
+    public static int Sum(int[] a)
+    {
+        int totalSum = 0;
+        int idx = 0;
+        while (idx < a.Length)
+        {
+            totalSum += a[idx];
+            idx++;
+        }
+        return totalSum;
+    }
+
+    // 2. Индекс первого минимального (начальное значение из массива)
+    public static int IndexOfMin(int[] a)
+    {
+        int minIdx = 0;
+        int idx = 1;
+        while (idx < a.Length)
+        {
+            if (a[idx] < a[minIdx])
+            {
+                minIdx = idx;
+            }
+            idx++;
+        }
+        return minIdx;
+    }
+
+    // 3. Количество элементов, больших x
+    public static int CountGreater(int[] a, int x)
+    {
+        int counter = 0;
+        for (int i = 0; i < a.Length; i++)
+        {
+            if (a[i] > x)
+            {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    // 4. Разворот массива на месте
+    public static void Reverse(int[] a)
+    {
+        int len = a.Length;
+        for (int i = 0; i < len / 2; i++)
+        {
+            int buffer = a[i];
+            a[i] = a[len - 1 - i];
+            a[len - 1 - i] = buffer;
+        }
+    }
+}
+
+class Program
+{
+    static void ProcessTest(int[] sourceArray)
+    {
+        // Клонируем массив для чистоты экспериментов с Reverse
+        int[] arr = (int[])sourceArray.Clone();
+
+        Console.WriteLine($"Исходный массив: {{{string.Join(", ", arr)}}}");
+        Console.WriteLine($"Сумма элементов: {ArrayOps.Sum(arr)}");
+        Console.WriteLine($"Индекс минимума: {ArrayOps.IndexOfMin(arr)}");
+        Console.WriteLine($"Элементов больше 2: {ArrayOps.CountGreater(arr, 2)}");
+        
+        ArrayOps.Reverse(arr);
+        Console.WriteLine($"Массив после Reverse: {{{string.Join(", ", arr)}}}");
+        Console.WriteLine(new string('=', 40));
+    }
+
+    static void Main(string[] args)
+    {
+        // Проверяем все требуемые наборы данных
+        ProcessTest(new int[] { 4, 1, 7, 3, 9 });
+        ProcessTest(new int[] { 5 });
+        ProcessTest(new int[] { -2, -7, -4 });
+        ProcessTest(new int[] { 2, 2, 2 });
+    }
+}
